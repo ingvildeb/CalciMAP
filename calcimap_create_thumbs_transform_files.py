@@ -24,7 +24,7 @@ sex = subjects["sex"]
     
 for i, m, a, s in zip(ID, marker, age, sex):
     print(i,m,a,s)
-    transform_input_dir = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/1_original_tiffs/" 
+    transform_input_dir = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/2_tiffs_rotated_renamed/" 
     transformfiles = glob(transform_input_dir + "*.tif")
 
     file_list = []
@@ -37,10 +37,10 @@ for i, m, a, s in zip(ID, marker, age, sex):
    
     nff.write_nut_transform_file(i + "_" + a + "_" + m + "_thumbs", "Y:/2021_Bjerke_DevMouse_projects/01_DATA/thumbs_transform_files/",
                                  transform_input_dir = transform_input_dir,
-                                 transform_output_dir = transform_input_dir,
+                                 transform_output_dir = transform_input_dir + "new_thumbs/",
                                  transform_files = ', '.join(file_list),
                                  only_thumbnails = "Yes",
-                                 transform_thumbnail_size = "0.02")
+                                 transform_thumbnail_size = "0.01")
     
 
 

@@ -24,8 +24,8 @@ for file in nut_files:
     stain = (filename.split(sep="_", maxsplit=2)[2]).split(sep="_t")[0]
     age = filename.split(sep="_")[1]
 
-    orig_tiff_path = data_path + age + "/" + stain + "/" + ID + "/1_original_tiffs/"
-    thumb_path = orig_tiff_path + "thumbnails/"
+    orig_tiff_path = data_path + age + "/" + stain + "/" + ID + "/2_tiffs_rotated_renamed/"
+    thumb_path = orig_tiff_path + "new_thumbs/thumbnails/"
     
     destination = done_path + filename
 
@@ -36,9 +36,9 @@ for file in nut_files:
     existing_thumbs_no = len(existing_thumbs)
     
     if orig_tiffs_no == existing_thumbs_no:
-        print(ID + " : done")
+        #print(ID + " : done")
         shutil.move(file, destination)
-        #print(f"moving \n {file} \n to \n {destination}")
+        print(f"moving \n {file} \n to \n {destination}")
         
     else:
         print(ID + " : not done")
@@ -69,7 +69,7 @@ for file in nut_files:
             
         nff.write_nut_transform_file(ID + "_" + age + "_" + stain + "_thumbs", "Y:/2021_Bjerke_DevMouse_projects/01_DATA/thumbs_transform_files/",
                                      transform_input_dir = orig_tiff_path,
-                                     transform_output_dir = orig_tiff_path + "thumbnails/",
+                                     transform_output_dir = orig_tiff_path + "new_thumbs/",
                                      transform_files = ', '.join(remaining_thumbs),
                                      only_thumbnails = "Yes",
-                                     transform_thumbnail_size = "0.02")
+                                     transform_thumbnail_size = "0.01")
