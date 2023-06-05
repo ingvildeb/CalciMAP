@@ -26,9 +26,11 @@ sex = subjects["sex"]
 
 for i, m, a, s in zip(ID, marker, age, sex):
     #print(i,m,a,s)
-    transform_input_dir = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/1_original_tiffs/" 
+    transform_input_dir = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/2_tiffs_rotated_renamed/" 
     transform_output_dir = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/2_tiffs_rotated_renamed/" 
     transformfiles = glob(transform_input_dir + "*.tif")
+
+
 
     #file_list = []
     file_names = []
@@ -38,61 +40,64 @@ for i, m, a, s in zip(ID, marker, age, sex):
         #file_list.append(file_in_nut)
         file_names.append(file)
    
-    print(file_names[1]) 
+    #print(file_names) 
+
    
-    mylist = []
+    # mylist = []
     
     
-    for file in file_names:
-        scene_list = []
-        scene = (file.split(sep=".tif")[0]).split(sep="_")[-1]
-        scene_list.append(scene)
+    # for file in file_names:
+    #     scene_list = []
+    #     scene = (file.split(sep=".tif")[0]).split(sep="_")[-1]
+    #     scene_list.append(scene)
            
         
-        for scene in scene_list:
+    #     for scene in scene_list:
                 
-            if scene == "s1":
-                section = (file.split(sep="_")[3])
-                mylist.append(section)
-            elif scene == "s2":
-                section = (file.split(sep="_")[4])
-                mylist.append(section)        
-            elif scene == "s3":
-                section = ((file.split(sep="_")[5])).split("-")[0]
-                mylist.append(section) 
-            elif scene == "s4":
-                section = ((file.split(sep="_")[6])).split("-")[0]
-                mylist.append(section)
-            else:
-                section = (file.split(sep="_")[3]).split(sep="-")[0]
-                mylist.append(section)
+    #         if scene == "s1":
+    #             section = (file.split(sep="_")[3])
+    #             mylist.append(section)
+    #         elif scene == "s2":
+    #             section = (file.split(sep="_")[4])
+    #             mylist.append(section)        
+    #         elif scene == "s3":
+    #             section = ((file.split(sep="_")[5])).split("-")[0]
+    #             mylist.append(section) 
+    #         elif scene == "s4":
+    #             section = ((file.split(sep="_")[6])).split("-")[0]
+    #             mylist.append(section)
+    #         else:
+    #             section = (file.split(sep="_")[3]).split(sep="-")[0]
+    #             mylist.append(section)
 
 
                 
-    new_file_names = [] 
+    # new_file_names = [] 
            
-    for section in mylist:
-        section = str(section)
-        section = re.sub('[^0-9]','', section)
-        section = section.zfill(3)
-        section = "s" + section
-        section = i + "_" + a + "_" + s + "_" + m + "_" + section
-        section = section.replace("Mouse", "mouse")
-        section = section.replace("Calbindin", "calb")
-        section = section.replace("Parvalbumin", "parv")
-        section = section.replace("Cresyl_violet", "CV")
-        new_file_names.append(section)
+    # for section in mylist:
+    #     section = str(section)
+    #     section = re.sub('[^0-9]','', section)
+    #     section = section.zfill(3)
+    #     section = "s" + section
+    #     section = i + "_" + a + "_" + s + "_" + m + "_" + section
+    #     section = section.replace("Mouse", "mouse")
+    #     section = section.replace("Calbindin", "calb")
+    #     section = section.replace("Parvalbumin", "parv")
+    #     section = section.replace("Cresyl_violet", "CV")
+    #     new_file_names.append(section)
         
     
     #trying to create df for nut transform input file
     df = pd.DataFrame(columns = ["Input file name", "Renamed", "Rotation CCW", "Scale X", "Scale Y"])
     df["Input file name"] = file_names
-    df["Renamed"] = new_file_names
+    df["Renamed"] = file_names #new_file_names
     df["Rotation CCW"] = "0"
     df["Scale X"] = "1"
     df["Scale Y"] = "1"
     
-    df.to_excel("Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/" + i + "_" + a + "_" + m + "_transform.xlsx", index=False)
+    df.to_excel("Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/" + i + "_" + a + "_" + m + "_transform_finalQC.xlsx", index=False)
+    
+    print(i + " done")
     
    
     nff.write_nut_transform_file(i + "_" + a + "_" + m + "_transform", "Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/" + i + "_" + a + "_" + m,

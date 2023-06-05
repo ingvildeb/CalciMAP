@@ -40,7 +40,7 @@ for i, m, a, s in zip(ID, marker, age, sex):
                                  transform_output_dir = transform_input_dir + "new_thumbs/",
                                  transform_files = ', '.join(file_list),
                                  only_thumbnails = "Yes",
-                                 transform_thumbnail_size = "0.01")
+                                 transform_thumbnail_size = "0.02")
     
 
 

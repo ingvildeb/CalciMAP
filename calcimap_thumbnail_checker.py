@@ -38,7 +38,7 @@ for file in nut_files:
     if orig_tiffs_no == existing_thumbs_no:
         #print(ID + " : done")
         shutil.move(file, destination)
-        print(f"moving \n {file} \n to \n {destination}")
+        #print(f"moving \n {file} \n to \n {destination}")
         
     else:
         print(ID + " : not done")
