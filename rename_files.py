@@ -9,8 +9,8 @@ import os
 import pandas as pd
 import glob
 
-file_folder = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/P9/Parvalbumin/Mouse370/1_original_tiffs/thumbnails//"
-rename_file = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\P9\Parvalbumin\Mouse370/Mouse370_P9_Parvalbumin_transform.xlsx"
+file_folder = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/P35/Parvalbumin/Mouse815/1_original_tiffs/thumbnails//"
+rename_file = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\P35\Parvalbumin\Mouse815/Mouse815_P35_Parvalbumin_transform.xlsx"
 
 
 
@@ -36,9 +36,7 @@ files = glob.glob(file_folder + "*.png")
 
 dict_of_renaming = dict(zip(thumb_name_list, new_name_list))
 
-# for file in files:
-#     file_name = (file.split(".png")[0]).split("\\")[-1]
-#     break
+
 
 def rename_files(directory, file_list, rename_dict):
     
