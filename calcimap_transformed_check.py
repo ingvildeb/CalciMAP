@@ -15,9 +15,9 @@ import shutil
 nut_file_path = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_files/"
 nut_files = glob(nut_file_path + "*.nut")
 
-data_path = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/"
+data_path = r"Y:/2021_Bjerke_DevMouse_projects/01_DATA/"
 
-done_path = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/thumbs_transform_files/done//"
+done_path = r"Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_files/done/"
 
 
 for file in nut_files:
@@ -30,7 +30,7 @@ for file in nut_files:
     orig_tiff_path = data_path + age + "/" + stain + "/" + ID + "/1_original_tiffs/"
     transform_path = data_path + age + "/" + stain + "/" + ID + "/2_tiffs_rotated_renamed/"
     
-    thumb_path = data_path + age + "/" + stain + "/" + ID + "/2_tiffs_rotated_renamed/thumbnails/"
+    #thumb_path = data_path + age + "/" + stain + "/" + ID + "/2_tiffs_rotated_renamed/thumbnails/"
     
     destination = done_path + filename
     
