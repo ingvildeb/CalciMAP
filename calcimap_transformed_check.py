@@ -12,12 +12,12 @@ from glob import glob
 import shutil
 
 
-nut_file_path = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_files/"
+nut_file_path = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_IEB/"
 nut_files = glob(nut_file_path + "*.nut")
 
 data_path = r"Y:/2021_Bjerke_DevMouse_projects/01_DATA/"
 
-done_path = r"Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_files/done/"
+done_path = r"Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_IEB/done/"
 
 
 for file in nut_files:
@@ -39,7 +39,7 @@ for file in nut_files:
 
     print(ID, stain, age)
     
-    transformsheet = data_path + age + "/" + stain + "/" + ID + "/" + ID + "_" + age + "_" + stain + "_transform.xlsx"
+    transformsheet = data_path + age + "/" + stain + "/" + ID + "/" + ID + "_" + age + "_" + stain + "_transform_final.xlsx"
     dict_of_correspondence, orig_name_list, new_name_list = ncf.get_renaming_dict(transformsheet)
     
     message = ncf.check_files_in_folders(orig_tiff_path, transform_path, ".tif", ".tif")
@@ -49,7 +49,9 @@ for file in nut_files:
 
     missing_files, missing_files_renamed = ncf.identify_missing_files(folder1files, folder2files, dict_of_correspondence)
 
+    print(len(missing_files))
 
+    
     if len(missing_files) > 0:
         missing_files_df = ncf.create_missing_files_df(missing_files, transformsheet)
         
@@ -60,7 +62,7 @@ for file in nut_files:
             nut_string_list.append(nut_string)
         
         nff.write_nut_transform_file(ID + "_" + age + "_" + stain + "_transform", nut_file_path, name = ID + "_" + age + "_" + stain, transform_input_dir = orig_tiff_path, transform_output_dir = transform_path,
-                                      output_compression = "lzw", transform_files = ','.join(nut_string_list), transform_thumbnail_size = "0.1", only_thumbnails = "No")
+                                      output_compression = "lzw", transform_files = ','.join(nut_string_list), transform_thumbnail_size = "0.2", only_thumbnails = "No")
 
         
         

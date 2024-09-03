@@ -12,8 +12,8 @@ from glob import glob
 import re
 import os
 
-resourcedir = r'Y:\2021_Bjerke_DevMouse_projects\03_METADATA//'
-metadata = resourcedir + "IDs_to_share_cb-pv.xlsx"
+resourcedir = r'Y:/2021_Bjerke_DevMouse_projects/01_DATA//'
+metadata = resourcedir + "ids_to_make_files.xlsx"
 
 subjects = pd.read_excel(metadata)    
 
@@ -24,7 +24,7 @@ sex = subjects["sex"]
 
 
 for i, m, a, s in zip(ID, marker, age, sex):
-    #print(i,m,a,s)
+    print(i,m,a,s)
     #os.mkdir(fr"Y:/2021_Bjerke_DevMouse_projects/01_DATA/{a}/{m}/{i}/2_TIF")
 
     
@@ -32,13 +32,13 @@ for i, m, a, s in zip(ID, marker, age, sex):
     thumbs_output_dir = fr"Y:/2021_Bjerke_DevMouse_projects/01_DATA/{a}/{m}/{i}/"
     
     nutil_file_name = f"{i}_{a}_{m}_finalThumbs"
-    nutil_store_path = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\thumbs_files//"
+    nutil_store_path = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\Transform//"
     
     nutilList = nff.nut_list_from_files(thumbs_input_dir)
 
   
     nff.write_nut_transform_file(nutil_file_name, nutil_store_path, transform_input_dir = thumbs_input_dir, transform_output_dir = thumbs_output_dir, 
-                             transform_files = nutilList, only_thumbnails = "Yes", transform_thumbnail_size = "0.1")
+                             transform_files = nutilList, only_thumbnails = "Yes", transform_thumbnail_size = "0.2")
     
 
 
