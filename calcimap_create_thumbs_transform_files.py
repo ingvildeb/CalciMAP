@@ -6,11 +6,11 @@ Created on Fri Feb 10 10:52:19 2023
 """
 
 import pandas as pd
-import create_nut_file_functions as nff
+import nutil_scripts.create_nut_file_functions as nff
 from glob import glob
 
 
-resourcedir = 'Y:/2021_Bjerke_DevMouse_projects/01_DATA/thumbs_transform_files//'
+resourcedir = 'Y:/2021_Bjerke_DevMouse_projects/01_DATA//'
 metadata = resourcedir + "ids_to_make_files.xlsx"
 
 subjects = pd.read_excel(metadata)    
@@ -24,7 +24,7 @@ sex = subjects["sex"]
     
 for i, m, a, s in zip(ID, marker, age, sex):
     print(i,m,a,s)
-    transform_input_dir = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/2_tiffs_rotated_renamed/" 
+    transform_input_dir = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/1_original_tiffs/" 
     transformfiles = glob(transform_input_dir + "*.tif")
 
     file_list = []
@@ -35,9 +35,9 @@ for i, m, a, s in zip(ID, marker, age, sex):
     
 
    
-    nff.write_nut_transform_file(i + "_" + a + "_" + m + "_thumbs", "Y:/2021_Bjerke_DevMouse_projects/01_DATA/thumbs_transform_files/",
+    nff.write_nut_transform_file(i + "_" + a + "_" + m + "_thumbs", "Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_IEB/",
                                  transform_input_dir = transform_input_dir,
-                                 transform_output_dir = transform_input_dir + "new_thumbs/",
+                                 transform_output_dir = transform_input_dir,
                                  transform_files = ', '.join(file_list),
                                  only_thumbnails = "Yes",
                                  transform_thumbnail_size = "0.02")
