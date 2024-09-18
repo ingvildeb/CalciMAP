@@ -7,16 +7,17 @@ Created on Tue Aug 13 15:11:11 2024
 
 import json
 
-ID = "311"
-age = "P21"
+ID = "693"
+age = "P9"
 
+if age == "P14" or age == "P21":
+    template = "template"
+else:
+    template = "model"
 
 
 oldAnchoringJson = rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\{age}\Mouse{ID}\mouse{ID}_finalWithCorr.json"
-newAnchoringJson = rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\{age}\Mouse{ID}\1_joint_for_quicknii\mouse{ID}_joint.json"
-
-
-
+newAnchoringJson = rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\{age}\Mouse{ID}\Mouse{ID}_joint.json"
 
 
 with open(oldAnchoringJson, 'r') as f:
@@ -50,7 +51,7 @@ for s in oldAnchoringData["slices"]:
     oldHeights = dict(zip(oldSlicesNumbers,oldSlicesHeights))
 
 
-jsonDict = {"name":"mouse{ID}_jointAnchoring","target":"DeMBA_P21_template.cutlas","target-resolution":[570,705,400],"slices":[]}
+jsonDict = {"name":f"mouse{ID}_jointAnchoring","target":f"DeMBAv2_{age}_{template}.cutlas","target-resolution":[570,705,400],"slices":[]}
 
 for s in newAnchoringData["slices"]:
     nr = s["nr"]
@@ -77,7 +78,7 @@ for s in newAnchoringData["slices"]:
     jsonDict["slices"].append(sliceDict)
     
 
-with open(rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\{age}\Mouse{ID}\resize_test_25\mouse{ID}_jointAnchoring.json", "w") as outfile:
+with open(rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\{age}\Mouse{ID}\mouse{ID}_jointAnchoring.json", "w") as outfile:
     json.dump(jsonDict, outfile)   
     
     
