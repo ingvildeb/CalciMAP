@@ -1,3 +1,3 @@
-[submodule "nutil_scripts"]
-	path = nutil_scripts
-	url = https://github.com/ingvildeb/nutil_scripts
+[submodule "brain_section_scripts"]
+	path = brain_section_scripts
+	url = https://github.com/ingvildeb/brain_section_scripts
