@@ -17,7 +17,7 @@ nut_files = glob(nut_file_path + "*.nut")
 
 data_path = r"Y:/2021_Bjerke_DevMouse_projects/01_DATA/"
 
-done_path = r"Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_IEB/done/"
+done_path = r"Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_IEB/"
 
 
 for file in nut_files:
@@ -38,6 +38,8 @@ for file in nut_files:
     # read and convert transform file into dict_of_renaming
 
     print(ID, stain, age)
+    
+
     
     transformsheet = data_path + age + "/" + stain + "/" + ID + "/" + ID + "_" + age + "_" + stain + "_transform_final.xlsx"
     dict_of_correspondence, orig_name_list, new_name_list = ncf.get_renaming_dict(transformsheet)

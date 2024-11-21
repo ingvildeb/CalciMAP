@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Aug 13 15:11:11 2024
+Created on Tue Nov  5 08:59:41 2024
 
 @author: ingvieb
 """
 
+
 import json
 
-ID = "857"
-age = "P9"
+ID = "6"
+age = "P120"
 
 if age =="P120":
     atlasName = "ABA_Mouse_CCFv3_2017_25um.cutlas"
@@ -21,8 +22,8 @@ else:
     targetResolution = [570,705,400]
 
 
-oldAnchoringJson = rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\{age}\Mouse{ID}\mouse{ID}_jointAnchoring_final_nonlinear.json"
-newAnchoringJson = rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\{age}\Mouse{ID}\Mouse{ID}_jointWithPNN.json"
+oldAnchoringJson = rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\{age}\Mouse{ID}\mouse{ID}_jointAnchoring_ds.json"
+newAnchoringJson = rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\{age}\Mouse{ID}\Mouse{ID}_joint.json"
 
 
 with open(oldAnchoringJson, 'r') as f:
@@ -34,7 +35,7 @@ with open(newAnchoringJson, 'r') as f:
 
 oldSlicesNumbers = []
 oldSlicesAnchoring = []
-oldSlicesMarkers = []
+# oldSlicesMarkers = []
 oldSlicesWidths = []
 oldSlicesHeights = []
 
@@ -47,11 +48,11 @@ for s in oldAnchoringData["slices"]:
     height = s["height"]
     oldSlicesNumbers.append(nr)
     oldSlicesAnchoring.append(anchoring)
-    oldSlicesMarkers.append(markers)
+    # oldSlicesMarkers.append(markers)
     oldSlicesWidths.append(width)
     oldSlicesHeights.append(height)
     oldAnchorings = dict(zip(oldSlicesNumbers,oldSlicesAnchoring))
-    oldMarkers = dict(zip(oldSlicesNumbers,oldSlicesMarkers))
+    # oldMarkers = dict(zip(oldSlicesNumbers,oldSlicesMarkers))
     oldWidths = dict(zip(oldSlicesNumbers,oldSlicesWidths))
     oldHeights = dict(zip(oldSlicesNumbers,oldSlicesHeights))
 
@@ -69,34 +70,33 @@ for s in newAnchoringData["slices"]:
     
     if nr in oldSlicesNumbers:
         anchoring = oldAnchorings.get(nr)
-        markers = oldMarkers.get(nr)
+        # markers = oldMarkers.get(nr)
         
-        newmarkers = []
-        for marker_xy in markers:
-            xfrom = marker_xy[0]
-            yfrom = marker_xy[1]
-            xto = marker_xy[2]
-            yto = marker_xy[3]
-            #print(xfrom, xto)
+        # newmarkers = []
+        # for marker_xy in markers:
+        #     xfrom = marker_xy[0]
+        #     yfrom = marker_xy[1]
+        #     xto = marker_xy[2]
+        #     yto = marker_xy[3]
+        #     #print(xfrom, xto)
 
-            xfrom_relative = xfrom/oldWidth
-            xto_relative = xto/oldWidth
-            yfrom_relative = yfrom/oldHeight
-            yto_relative = yto/oldHeight
-            #print(xfrom_relative, xto_relative)
+        #     xfrom_relative = xfrom/oldWidth
+        #     xto_relative = xto/oldWidth
+        #     yfrom_relative = yfrom/oldHeight
+        #     yto_relative = yto/oldHeight
+        #     #print(xfrom_relative, xto_relative)
 
-            xfrom_new = width*xfrom_relative
-            xto_new = width*xto_relative
-            yfrom_new = height*yfrom_relative
-            yto_new = height*yto_relative
-            newmarkers.append([xfrom_new, yfrom_new, xto_new, yto_new])
+        #     xfrom_new = width*xfrom_relative
+        #     xto_new = width*xto_relative
+        #     yfrom_new = height*yfrom_relative
+        #     yto_new = height*yto_relative
+        #     newmarkers.append([xfrom_new, yfrom_new, xto_new, yto_new])
         
         sliceDict = {"nr":nr, 
                      "width":width,
                      "height":height,
                      "filename":filename,
-                     "anchoring":anchoring,
-                     "markers":newmarkers}
+                     "anchoring":anchoring}
       
 
         
@@ -110,7 +110,7 @@ for s in newAnchoringData["slices"]:
     
 
 
-with open(rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\{age}\Mouse{ID}\mouse{ID}_jointAnchoringWithPNN.json", "w") as outfile:
+with open(rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\{age}\Mouse{ID}\mouse{ID}_jointAnchoring.json", "w") as outfile:
     json.dump(jsonDict, outfile)   
     
     

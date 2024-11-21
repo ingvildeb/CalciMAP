@@ -113,7 +113,7 @@ for i, m, a, s in zip(ID, marker, age, sex):
 
 for i, m, a, s in zip(ID, marker, age, sex):
     
-    if m == "Calbindin" or m == "Parvalbumin":
+    if m == "Calbindin":
         print(i,m,a,s)
         transform_input_dir = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/2_TIF/" #"Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/1_original_tiffs/" 
         transform_output_dir = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/temp_output/" #"Y:/2021_Bjerke_DevMouse_projects/01_DATA/" + a + "/" + m + "/" + i + "/2_tiffs_rotated_renamed/" 

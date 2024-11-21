@@ -12,7 +12,7 @@ import nutil_scripts.create_nut_file_functions as nff
 import nutil_scripts.checking_functions as ncf
 
 
-nut_file_path = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_IEB/"
+nut_file_path = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_IEB/finalThumbs/"
 nut_files = glob.glob(nut_file_path + "*.nut")
 
 data_path = "Y:/2021_Bjerke_DevMouse_projects/01_DATA/"

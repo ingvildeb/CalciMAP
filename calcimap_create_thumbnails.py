@@ -32,7 +32,7 @@ for i, m, a, s in zip(ID, marker, age, sex):
     thumbs_output_dir = fr"Y:/2021_Bjerke_DevMouse_projects/01_DATA/{a}/{m}/{i}/"
     
     nutil_file_name = f"{i}_{a}_{m}_finalThumbs"
-    nutil_store_path = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\Transform//"
+    nutil_store_path = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB//"
     
     nutilList = nff.nut_list_from_files(thumbs_input_dir)
 

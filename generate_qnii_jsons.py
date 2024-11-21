@@ -21,8 +21,12 @@ metadata = resourcedir + "ids_to_make_files.xlsx"
 
 subjects = pd.read_excel(metadata)    
 
-ID = subjects["id"]
-age = subjects["age"]
+# ID = subjects["id"]
+# age = subjects["age"]
+
+
+ID = ["mouse111"]
+age = ["P35"]
 
 IDDict = dict(zip(ID, age))
 
@@ -74,8 +78,12 @@ for ID in IDDict:
 
     
     sortedSlicesDicts = sorted(sliceDicts, key=lambda x: (x['nr']))
-                                              
-    jsonDict = {"name":f"{ID}_jointAnchoring","target":f"DeMBAv2_{age}_{template}.cutlas","target-resolution":[570,705,400],"slices":sortedSlicesDicts}
+    
+    if age == "P120":
+        jsonDict = {"name":f"{ID}_jointAnchoring","target":"ABA_Mouse_CCFv3_2017_25um.cutlas","target-resolution":[428,524,320],"slices":sortedSlicesDicts}
+
+    else:                                            
+        jsonDict = {"name":f"{ID}_jointAnchoring","target":f"DeMBAv2_{age}_{template}.cutlas","target-resolution":[570,705,400],"slices":sortedSlicesDicts}
     
     
     with open(rf"{basePath}\{age}\{ID}\{ID}_joint.json", "w") as outfile:

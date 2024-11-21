@@ -20,13 +20,14 @@ marker = subjects["marker"]
 age = subjects["age"]
 sex = subjects["sex"]
 
+
+# ID = ["Mouse2"]
+# marker = ["Parvalbumin"]
+# age = ["P120"]
+# sex = ["F"]
+
 # Create files with list of new file names
 
-
-ID = ["Mouse2"]
-marker = ["Parvalbumin"]
-age = ["P120"]
-sex = ["F"]
 
 for i, m, a, s in zip(ID, marker, age, sex):
     print(i,m,a,s)
