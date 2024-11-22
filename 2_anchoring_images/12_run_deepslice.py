@@ -6,7 +6,7 @@ species = 'mouse' #available species are 'mouse' and 'rat'
 
 Model = DSModel(species)
 
-ID = "Mouse6"
+ID = "6"
 blocks = ["block1", "block2"]
 
 
@@ -38,7 +38,7 @@ jsonDict = {"name":f"{ID}_jointAnchoring_ds","target":"ABA_Mouse_CCFv3_2017_25um
 
 
 for block in blocks:
-    dsAnchoringJson = rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\P120\{ID}\for_deepslice/{block}/{block}_ds.json"
+    dsAnchoringJson = rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\P120\Mouse{ID}\for_deepslice/{block}/{block}_ds.json"
     
     
     with open(dsAnchoringJson, 'r') as f:
@@ -48,5 +48,5 @@ for block in blocks:
     jsonDict["slices"].extend(slices)
 
     
-with open(rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\P120\{ID}\{ID}_jointAnchoring_ds.json", "w") as outfile:
+with open(rf"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\P120\Mouse{ID}\mouse{ID}_jointAnchoring_ds.json", "w") as outfile:
     json.dump(jsonDict, outfile)   
