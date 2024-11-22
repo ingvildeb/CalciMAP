@@ -41,6 +41,6 @@ for i, m, a, s in zip(ID, marker, age, sex):
                                  r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB\wait//", 
                                  transform_input_dir = transform_input_dir, 
                                  transform_output_dir = file_base_path, 
-                                 transform_files = nut_file_string, 
+                                 transform_files = ",".join(nut_file_string), 
                                  only_thumbnails = "Yes", 
                                  transform_thumbnail_size = "0.2")

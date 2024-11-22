@@ -41,5 +41,5 @@ for i, m, a, s in zip(ID, marker, age, sex):
                                  r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB\\", 
                                  transform_input_dir = rf"{file_base_path}/1_original_tiffs/", 
                                  transform_output_dir = rf"{file_base_path}/2_tiffs_rotated_renamed/", 
-                                 transform_files = nut_file_string, 
+                                 transform_files = ",".join(nut_file_string), 
                                  transform_thumbnail_size = "0.2")

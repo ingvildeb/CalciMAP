@@ -36,6 +36,6 @@ for i, m, a in zip(ID, marker, age):
     nff.write_nut_transform_file(rf"Mouse{i}_P{a}_{m.capitalize()}_thumbs", "Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_IEB/",
                                  transform_input_dir = transform_dir,
                                  transform_output_dir = transform_dir,
-                                 transform_files = transform_files,
+                                 transform_files = ",".join(transform_files),
                                  only_thumbnails = "Yes",
                                  transform_thumbnail_size = "0.02")

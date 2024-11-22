@@ -26,7 +26,7 @@ marker_shortnames = {"parvalbumin":"parv", "calbindin":"calb", "cresyl_violet":"
 template_ages = [4,7,14,21,28]
 
 # The base path for all subfolders
-base_path =r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\QuickNII_registration_workspace\\"
+base_path = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\QuickNII_registration_workspace\\"
 
 
 for i, m, a in zip(ID, marker, age):
