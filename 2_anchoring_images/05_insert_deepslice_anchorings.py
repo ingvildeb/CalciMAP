@@ -19,7 +19,7 @@ deepslice_anchoring = rf"{base_path}\mouse{ID}_jointAnchoring_ds.json"
 full_anchoring_json = rf"{base_path}\mouse{ID}_joint.json"
 
 
-combined_json_dict = iea.insert_existing_anchorings(deepslice_anchoring, full_anchoring_json, "testing", atlas_name, target_resolution)
+combined_json_dict = iea.insert_existing_anchorings(deepslice_anchoring, full_anchoring_json, "mouse{ID}_jointAnchoring", atlas_name, target_resolution)
 
 with open(rf"{base_path}\mouse{ID}_jointAnchoring.json", "w") as outfile:
     json.dump(combined_json_dict, outfile)   
