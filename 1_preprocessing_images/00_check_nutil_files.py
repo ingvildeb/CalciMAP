@@ -2,6 +2,7 @@ import sys
 import os
 import pandas as pd
 import glob
+import shutil
 
 # Import from module in parent directory
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
