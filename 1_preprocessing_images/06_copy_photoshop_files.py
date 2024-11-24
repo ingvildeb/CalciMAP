@@ -57,8 +57,8 @@ for i, m, a, s in zip(ID, marker, age, sex):
             print(f"{snum} being copied...")
             copied_files.append(snum)
             
-            #dst = f"{ps_dir}{filename}"
             shutil.copyfile(file, f"{ps_dir}{filename}")
             
         else:
             continue
+        
