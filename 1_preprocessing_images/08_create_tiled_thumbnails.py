@@ -11,7 +11,7 @@ import create_nut_file_functions as nff
 
 # List the IDs and markers with files to be renamed
 ids = [276]
-markers = ["cresyl_violet"]
+markers = ["cresyl_violet", "parvalbumin", "calbindin"]
 
 # Path to Excel sheet listing all animal IDs with metadata
 metadata = r"Y:\2021_Bjerke_DevMouse_projects\03_METADATA//animals_and_stains.xlsx"
@@ -33,14 +33,14 @@ for i, m, a, s in zip(ID, marker, age, sex):
     print(i,m,a,s)
     file_base_path = rf"Y:\2021_Bjerke_DevMouse_projects\01_DATA\P{a}\{m.capitalize()}\Mouse{i}\\"
 
-    transform_input_dir = fr"{file_base_path}2_TIF/"
-    nut_file_string = nff.nut_list_from_files(transform_input_dir)
+    tiff_path = fr"{file_base_path}2_TIF\photoshop\tiled\\"
+    nut_file_string = nff.nut_list_from_files(tiff_path)
 
   
-    nff.write_nut_transform_file(f"Mouse{i}_P{a}_{m.capitalize()}_finalThumbs", 
-                                 r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB\wait//", 
-                                 transform_input_dir = transform_input_dir, 
-                                 transform_output_dir = file_base_path, 
+    nff.write_nut_transform_file(f"Mouse{i}_{a}_{m.capitalize()}_tiledThumbs", 
+                                "Y:/2021_Bjerke_DevMouse_projects/01_DATA/Transform/", 
+                                 transform_input_dir = tiff_path, 
+                                 transform_output_dir = tiff_path, 
                                  transform_files = nut_file_string, 
                                  only_thumbnails = "Yes", 
-                                 transform_thumbnail_size = "0.2")
+                                 transform_thumbnail_size = "0.1")
