@@ -1,6 +1,7 @@
 import sys
 import os
 import pandas as pd
+import glob
 
 # List the IDs and markers with files to be copied
 ids = [124,239,251,295,390,774,988]
@@ -30,13 +31,9 @@ for i, m, a in zip(ID, marker, age):
     thumbs_path = fr"{file_base_path}/thumbnails_for_anchoring//"
     anchoring_path = fr"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\P{a}\Mouse{i}\\"
     
-    if m == "perineuronal_nets":
-        all_thumbs = glob(thumbs_path + "*_PNN-PV_*.png")
+    all_thumbs = glob.glob(thumbs_path + "*.png")
     
-    else:
-        all_thumbs = glob(thumbs_path + "*.png")
-    
-    for thumb in allThumbs:
+    for thumb in all_thumbs:
         name = os.path.basename(thumb)
         #print(f"copying {thumb}, to {anchoring_path}{name}")
         shutil.copy(thumb, f"{anchoring_path}{name}")

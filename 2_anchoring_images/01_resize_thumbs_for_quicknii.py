@@ -11,7 +11,7 @@ import create_nut_file_functions as nff
 import nutil_checker_functions as ncf
 
 # List the IDs and markers with files to be renamed
-ids = [124,239,251,295,390,774,988]
+ids = [617,900,124,239,251,295,390,774]
 markers = ["cresyl_violet"]
 
 # Path to Excel sheet listing all animal IDs with metadata
@@ -25,20 +25,19 @@ subjects_filtered = subjects.loc[(subjects['id'].isin(ids)) & (subjects['marker'
 ID = subjects_filtered["id"]
 marker = subjects_filtered["marker"]
 age = subjects_filtered["age"]
-sex = subjects_filtered["sex"]
 
 marker_shortnames = {"parvalbumin":"parv", "calbindin":"calb", "cresyl_violet":"CV"}
 
 
 # Loop through IDs to create resize files
-for i, m, a, s in zip(ID, marker, age, sex):
-    print(i,m,a,s)
+for i, m, a in zip(ID, marker, age):
+    print(i,m,a)
 
     file_base_path = rf"Y:\2021_Bjerke_DevMouse_projects\01_DATA\P{a}\{m.capitalize()}\Mouse{i}\\"
 
     
-    nff.write_nut_resize_file(nutil_file_name = f"Mouse{i}_P{a}_{m.capitalize()}_resizeThumbs", 
-                              nutil_store_path = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB//", 
+    nff.write_nut_resize_file(filename = f"Mouse{i}_P{a}_{m.capitalize()}_resizeThumbs", 
+                              storepath = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB//", 
                               resize_input_dir = fr"{file_base_path}/thumbnails/", 
                               resize_output_dir = fr"{file_base_path}/thumbnails_for_anchoring/", 
                               resize_size = 10)
