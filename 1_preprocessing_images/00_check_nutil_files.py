@@ -15,14 +15,14 @@ import nutil_checker_functions as ncf
 ### Example usage
 # Provide a directory that contains all the nut files to be checked
     
-nut_file_directory = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB//"
+nut_file_directory = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\tranform_IEB//"
 
 # Check transform files (thumbnails only or not)
 
 files = glob.glob(rf"{nut_file_directory}/*.nut")
 done_path = f"{nut_file_directory}done//"
 
-check_only = True
+check_only = False
 
 for file in files:    
     print(f"Checking {os.path.basename(file)}")
