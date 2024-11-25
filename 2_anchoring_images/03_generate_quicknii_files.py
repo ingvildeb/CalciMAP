@@ -6,6 +6,13 @@ import glob
 import re
 import json
 
+# Import from module in parent directory
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+brain_section_scripts_path = os.path.join(parent_dir, 'brain_section_scripts')
+sys.path.insert(0, brain_section_scripts_path)
+
+import alignment_json_utils as aju
+
 # List the IDs and markers with files to be copied
 ids = [124]
 markers = ["cresyl_violet"]
@@ -30,8 +37,7 @@ base_path = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\QuickNII_registration_wor
 
 
 for i, m, a in zip(ID, marker, age):
-    print(i,m,a)
-    
+
     if a in template_ages:
         template = "template"
     else:
@@ -40,36 +46,7 @@ for i, m, a in zip(ID, marker, age):
     print(i, a, template)
     
     files_path = rf"{basePath}P{a}\Mouse{i}\\"
-    files = glob.glob(f"{files_path}*.png")
-    
-    slice_dicts = []
-    
-    for file in files:
-        img = Image.open(file) 
-          
-        width = img.width 
-        height = img.height 
-        filename = os.path.basename(file)
-        nr = re.findall("[s][0-9][0-9][0-9]", filename)
-        
-        if len(nr) > 1:
-            print("error: more than one potential section number in file name!")
-            break
-        else:
-            nr = nr[0]
-            nr = re.sub("[s]", "", nr)
-            nr = int(nr)
-            print(nr)
-    
-        slice_dict = {"nr":nr, 
-                     "width":width,
-                     "height":height,
-                     "filename":filename}
-        
-        slice_dicts.append(slice_dict)
-
-    
-    sorted_slices_dicts = sorted(sliceDicts, key=lambda x: (x['nr']))
+    sorted_slices_dicts = aju.create_quicknii_slicedict(files_path)
     
     if a == "120":
         json_dict = {"name":f"{ID}_jointAnchoring","target":"ABA_Mouse_CCFv3_2017_25um.cutlas","target-resolution":[428,524,320],"slices":sorted_slices_dicts}
