@@ -4,7 +4,7 @@ import pandas as pd
 import glob
 
 # List the IDs and markers with files to be copied
-ids = [124,239,251,295,390,774,988]
+ids = [900,124,239,251,295,390,774]
 markers = ["cresyl_violet"]
 
 # Path to Excel sheet listing all animal IDs with metadata

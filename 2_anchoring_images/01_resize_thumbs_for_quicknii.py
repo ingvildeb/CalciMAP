@@ -37,7 +37,7 @@ for i, m, a in zip(ID, marker, age):
 
     
     nff.write_nut_resize_file(filename = f"Mouse{i}_P{a}_{m.capitalize()}_resizeThumbs", 
-                              storepath = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB//", 
+                              storepath = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\Transform//", 
                               resize_input_dir = fr"{file_base_path}/thumbnails/", 
                               resize_output_dir = fr"{file_base_path}/thumbnails_for_anchoring/", 
                               resize_size = 10)
@@ -46,7 +46,8 @@ for i, m, a in zip(ID, marker, age):
 
 # Provide a directory that contains all the nut files to be checked
     
-nut_file_directory = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB//"
+nut_file_directory = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\Transform//"
+files = glob.glob(rf"{nut_file_directory}/*.nut")
 
 # Check resize files
        
