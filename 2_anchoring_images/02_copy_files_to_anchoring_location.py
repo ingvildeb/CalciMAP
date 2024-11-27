@@ -2,10 +2,11 @@ import sys
 import os
 import pandas as pd
 import glob
+import shutil
 
 # List the IDs and markers with files to be copied
-ids = [900,124,239,251,295,390,774]
-markers = ["cresyl_violet"]
+ids = [255,704,276]
+markers = ["cresyl_violet", "parvalbumin", "calbindin"]
 
 # Path to Excel sheet listing all animal IDs with metadata
 metadata = r"Y:\2021_Bjerke_DevMouse_projects\03_METADATA//animals_and_stains.xlsx"
@@ -33,7 +34,16 @@ for i, m, a in zip(ID, marker, age):
     
     all_thumbs = glob.glob(thumbs_path + "*.png")
     
-    for thumb in all_thumbs:
-        name = os.path.basename(thumb)
-        #print(f"copying {thumb}, to {anchoring_path}{name}")
-        shutil.copy(thumb, f"{anchoring_path}{name}")
+    if os.path.exists(anchoring_path):
+
+        for thumb in all_thumbs:
+            name = os.path.basename(thumb)
+            shutil.copy(thumb, f"{anchoring_path}{name}")
+
+    else:
+        os.mkdir(anchoring_path)
+        anchoring_path = fr"Y:\2021_Bjerke_DevMouse_projects\QuickNII_registration_workspace\P{a}\Mouse{i}\\"
+
+        for thumb in all_thumbs:
+            name = os.path.basename(thumb)
+            shutil.copy(thumb, f"{anchoring_path}{name}")
