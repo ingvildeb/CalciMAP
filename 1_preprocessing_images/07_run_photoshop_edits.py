@@ -8,7 +8,7 @@ import pandas as pd
 
 
 # List the IDs and markers with files to be renamed
-ids = [276]
+ids = [704]
 markers = ["calbindin"]
 
 # Path to Excel sheet listing all animal IDs with metadata
@@ -58,8 +58,10 @@ for i, m, a, s in zip(ID, marker, age, sex):
         
             with Session(path, action="open") as ps:
                 ps.app.preferences.rulerUnits = ps.Units.Percent
-                ps.app.doAction(action=snum, action_from=f"{ID}_{marker_short}")
+                ps.app.doAction(action=snum[0], action_from=f"{ID}_{marker_short}")
                 options = ps.TiffSaveOptions()
                 options.imageCompression = 2
                 doc = ps.active_document
                 doc.saveAs(outPath, options, True)
+            
+            shutil.move(path, done_path)
