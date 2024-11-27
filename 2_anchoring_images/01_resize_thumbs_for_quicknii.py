@@ -11,8 +11,8 @@ import create_nut_file_functions as nff
 import nutil_checker_functions as ncf
 
 # List the IDs and markers with files to be renamed
-ids = [617,900,124,239,251,295,390,774]
-markers = ["cresyl_violet"]
+ids = [255,704,276]
+markers = ["cresyl_violet", "parvalbumin", "calbindin"]
 
 # Path to Excel sheet listing all animal IDs with metadata
 metadata = r"Y:\2021_Bjerke_DevMouse_projects\03_METADATA//animals_and_stains.xlsx"
@@ -34,19 +34,19 @@ for i, m, a in zip(ID, marker, age):
     print(i,m,a)
 
     file_base_path = rf"Y:\2021_Bjerke_DevMouse_projects\01_DATA\P{a}\{m.capitalize()}\Mouse{i}\\"
-
+    os.mkdir(fr"{file_base_path}/thumbnails_for_anchoring")
     
     nff.write_nut_resize_file(filename = f"Mouse{i}_P{a}_{m.capitalize()}_resizeThumbs", 
-                              storepath = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\Transform//", 
-                              resize_input_dir = fr"{file_base_path}/thumbnails/", 
-                              resize_output_dir = fr"{file_base_path}/thumbnails_for_anchoring/", 
+                              storepath = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB\wait//", 
+                              resize_input_dir = fr"{file_base_path}thumbnails/", 
+                              resize_output_dir = fr"{file_base_path}thumbnails_for_anchoring/", 
                               resize_size = 10)
     
 # Check whether all files were resized
 
 # Provide a directory that contains all the nut files to be checked
     
-nut_file_directory = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\Transform//"
+nut_file_directory = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB//"
 files = glob.glob(rf"{nut_file_directory}/*.nut")
 
 # Check resize files
