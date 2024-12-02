@@ -31,4 +31,4 @@ for i, m, a in zip(ID, marker, age):
     os.mkdir(fr"Y:/2021_Bjerke_DevMouse_projects/01_DATA/P{a}/{m.capitalize()}/Mouse{i}/1_original_tiffs")
     os.mkdir(fr"Y:/2021_Bjerke_DevMouse_projects/01_DATA/P{a}/{m.capitalize()}/Mouse{i}/1_original_tiffs/metadata")
     os.mkdir(fr"Y:/2021_Bjerke_DevMouse_projects/01_DATA/P{a}/{m.capitalize()}/Mouse{i}/2_TIF")
-    os.mkdir(fr"Y:/2021_Bjerke_DevMouse_projects/01_DATA/P{a}/{m.capitalize()}/Mouse{i}/3_anchoring_data")
+    os.mkdir(fr"Y:/2021_Bjerke_DevMouse_projects/01_DATA/P{a}/{m.capitalize()}/Mouse{i}/thumbnails_for_anchoring")
