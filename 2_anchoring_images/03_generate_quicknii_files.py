@@ -14,7 +14,7 @@ sys.path.insert(0, brain_section_scripts_path)
 import alignment_json_utils as aju
 
 # List the IDs and markers with pngs to be made into QuickNII json
-ids = [124]
+ids = [255,704,276]
 
 # Path to Excel sheet listing all animal IDs with metadata
 metadata = r"Y:\2021_Bjerke_DevMouse_projects\03_METADATA//animals_and_stains.xlsx"
@@ -46,7 +46,7 @@ for i in ID:
     print(i, a, template)
     
     files_path = rf"{base_path}P{a}\Mouse{i}\\"
-    name = f"Mouse{i}_TESTTESTjointAnchoring"
+    name = f"Mouse{i}_jointAnchoring"
 
     if a == "120":
         target = "ABA_Mouse_CCFv3_2017_25um.cutlas"
