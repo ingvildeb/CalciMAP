@@ -30,12 +30,12 @@ for i, m, a in zip(ID, marker, age):
     file_base_path = rf"Y:\2021_Bjerke_DevMouse_projects\01_DATA\P{a}\{m.capitalize()}\Mouse{i}\\"
 
     transform_dir = rf"{file_base_path}\\1_original_tiffs\\" 
-    transform_files = nut_list_from_files(transform_dir)
+    transform_files = nff.nut_list_from_files(transform_dir)
 
    
     nff.write_nut_transform_file(rf"Mouse{i}_P{a}_{m.capitalize()}_thumbs", "Y:/2021_Bjerke_DevMouse_projects/01_DATA/transform_IEB/",
                                  transform_input_dir = transform_dir,
                                  transform_output_dir = transform_dir,
-                                 transform_files = ",".join(transform_files),
+                                 transform_files = transform_files,
                                  only_thumbnails = "Yes",
                                  transform_thumbnail_size = "0.02")
