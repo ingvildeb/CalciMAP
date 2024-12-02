@@ -9,7 +9,7 @@ sys.path.insert(0, brain_section_scripts_path)
 import create_nut_file_functions as nff
 
 # List the IDs and markers with files to be renamed
-ids = [704]
+ids = [817]
 markers = ["parvalbumin"]
 
 # Path to Excel sheet listing all animal IDs with metadata
