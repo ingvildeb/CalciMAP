@@ -1,5 +1,6 @@
 import sys
 import os
+import pandas as pd
 
 # Import from module in parent directory
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +28,7 @@ sex = subjects_filtered["sex"]
 
 marker_shortnames = {"parvalbumin":"parv", "calbindin":"calb", "cresyl_violet":"CV"}
 
-# Loop through IDs to create reneming scheme
+# Loop through IDs to create renaming scheme
 for i, m, a, s in zip(ID, marker, age, sex):
     print(i,m,a,s)
     file_base_path = rf"Y:\2021_Bjerke_DevMouse_projects\01_DATA\P{a}\{m.capitalize()}\Mouse{i}\\"
@@ -39,7 +40,12 @@ for i, m, a, s in zip(ID, marker, age, sex):
                                                     maxScenes = 3,
                                                     underscores = 3)
 
-    find_duplicate_names(rf"{basePath}\\mouse{i}_P{a}_{s}_{marker_short}_renamingScheme.xlsx")
+# Check for any duplicate names in renaming scheme
+for i, m, a, s in zip(ID, marker, age, sex):
+    file_base_path = rf"Y:\2021_Bjerke_DevMouse_projects\01_DATA\P{a}\{m.capitalize()}\Mouse{i}\\"
+    marker_short = marker_shortnames.get(m)
+
+    fnf.find_duplicate_names(rf"{file_base_path}\\mouse{i}_P{a}_{s}_{marker_short}_renamingScheme.xlsx")
 
 
 for i, m, a, s in zip(ID, marker, age, sex):
@@ -48,5 +54,5 @@ for i, m, a, s in zip(ID, marker, age, sex):
     marker_short = marker_shortnames.get(m)
 
     #rename tiffs
-    rename_files(rf"{file_base_path}\\1_original_tiffs\\",
+    fnf.rename_files(rf"{file_base_path}\\1_original_tiffs\\",
                 rf"{file_base_path}\\mouse{i}_P{a}_{s}_{marker_short}_renamingScheme.xlsx")
