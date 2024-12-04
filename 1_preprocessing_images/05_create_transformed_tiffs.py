@@ -1,5 +1,6 @@
 import sys
 import os
+import pandas as pd
 
 # Import from module in parent directory
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -9,7 +10,7 @@ sys.path.insert(0, brain_section_scripts_path)
 import create_nut_file_functions as nff
 
 # List the IDs and markers with files to be renamed
-ids = [704]
+ids = [817]
 markers = ["parvalbumin", "calbindin", "cresyl_violet"]
 
 # Path to Excel sheet listing all animal IDs with metadata
@@ -38,7 +39,7 @@ for i, m, a, s in zip(ID, marker, age, sex):
 
 
     nff.write_nut_transform_file(f"Mouse{i}_P{a}_{m.capitalize()}_transform", 
-                                 r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\Transform\\", 
+                                 r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB\\", 
                                  transform_input_dir = rf"{file_base_path}1_original_tiffs/", 
                                  transform_output_dir = rf"{file_base_path}2_tiffs_rotated_renamed/", 
                                  transform_files = ",".join(nut_file_string), 
