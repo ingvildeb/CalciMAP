@@ -11,7 +11,7 @@ import file_naming_functions as fnf
 
 # List the IDs and markers with files to be renamed
 ids = [817]
-markers = ["parvalbumin"]
+markers = ["calbindin", "cresyl_violet"]
 
 # Path to Excel sheet listing all animal IDs with metadata
 metadata = r"Y:\2021_Bjerke_DevMouse_projects\03_METADATA//animals_and_stains.xlsx"
@@ -43,13 +43,14 @@ for i, m, a, s in zip(ID, marker, age, sex):
 # Check for any duplicate names in renaming scheme
 for i, m, a, s in zip(ID, marker, age, sex):
     file_base_path = rf"Y:\2021_Bjerke_DevMouse_projects\01_DATA\P{a}\{m.capitalize()}\Mouse{i}\\"
+    print(f"Checking Mouse{i} P{a} {m.capitalize()}")
     marker_short = marker_shortnames.get(m)
 
     fnf.find_duplicate_names(rf"{file_base_path}\\mouse{i}_P{a}_{s}_{marker_short}_renamingScheme.xlsx")
 
 
 for i, m, a, s in zip(ID, marker, age, sex):
-    print(i,m,a,s)
+    print(f"Renaming Mouse{i} P{a} {m.capitalize()}")
     file_base_path = rf"Y:\2021_Bjerke_DevMouse_projects\01_DATA\P{a}\{m.capitalize()}\Mouse{i}\\"
     marker_short = marker_shortnames.get(m)
 
