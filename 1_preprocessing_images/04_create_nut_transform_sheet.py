@@ -1,5 +1,6 @@
 import sys
 import os
+import pandas as pd
 
 # Import from module in parent directory
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -10,7 +11,7 @@ import create_nut_file_functions as nff
 
 # List the IDs and markers with files to be renamed
 ids = [817]
-markers = ["parvalbumin"]
+markers = ["calbindin"]
 
 # Path to Excel sheet listing all animal IDs with metadata
 metadata = r"Y:\2021_Bjerke_DevMouse_projects\03_METADATA//animals_and_stains.xlsx"
