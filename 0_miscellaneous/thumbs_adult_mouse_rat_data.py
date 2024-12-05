@@ -10,7 +10,7 @@ sys.path.insert(0, brain_section_scripts_path)
 import create_nut_file_functions as nff
 
 # List the IDs and markers with files to be renamed
-ids_species = {81264:"Mouse",81265:"Mouse",81266:"Mouse",81267:"Mouse",25205:"Rat",25206:"Rat",25207:"Rat",25208:"Rat"}
+ids_species = {81264:"Mouse",81265:"Mouse",81266:"Mouse",81267:"Mouse",25205:"Rat",25206:"Rat",25203:"Rat",25204:"Rat"}
 markers = ["parvalbumin", "nissl"]
 
 for m in markers:
