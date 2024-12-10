@@ -11,15 +11,14 @@ sys.path.insert(0, brain_section_scripts_path)
 import alignment_json_utils as aju
 
 # List the IDs and markers with files to be renamed
-ids = [111]
-markers = ["calbindin", "parvalbumin", "cresyl_violet"]
+markers = ["calbindin", "parvalbumin"]
 
 # Path to Excel sheet listing all animal IDs with metadata
 metadata = r"Y:\2021_Bjerke_DevMouse_projects\03_METADATA//animals_and_stains.xlsx"
 
 # Read and filter Excel sheet to the selected IDs and markers
 subjects = pd.read_excel(metadata)    
-subjects_filtered = subjects.loc[(subjects['id'].isin(ids)) & (subjects['marker'].isin(markers))] 
+subjects_filtered = subjects.loc[subjects['marker'].isin(markers)] 
 
 # Listing the metadata variables from the Excel sheet that are going to be used in our folder names
 ID = subjects_filtered["id"]
