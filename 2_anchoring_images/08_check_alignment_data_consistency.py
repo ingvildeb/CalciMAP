@@ -14,8 +14,8 @@ sys.path.insert(0, brain_section_scripts_path)
 import alignment_json_utils as aju
 
 # List the IDs and markers with files to be renamed
-ids = [110]
-markers = ["calbindin"]
+ids = [2,3,4,6,8,9,10,11]
+markers = ["calbindin", "parvalbumin"]
 
 # Path to Excel sheet listing all animal IDs with metadata
 metadata = r"Y:\2021_Bjerke_DevMouse_projects\03_METADATA//animals_and_stains.xlsx"
@@ -78,10 +78,10 @@ for i, m, a, s in zip(ID, marker, age, sex):
             if s["nr"] == nr:
                 json_width = s["width"]
                 json_height = s["height"]
-                if json_width == width and json_height == height:
+                if (abs(json_width - width) <= 1) or (abs(json_height - height) <= 1):
                     continue
                 else:
                     print(f"Error! Mismatching dimensions for section nr {nr}")
                     print(f"width of image is {width}, width in json is {json_width}")
-                    print(f"width of image is {height}, width in json is {json_height}")
+                    print(f"height of image is {height}, height in json is {json_height}")
 
