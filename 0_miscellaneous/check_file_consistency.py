@@ -63,6 +63,43 @@ for i,m,a,s in zip(ID,marker,age,sex):
 # Check that no excess files beyond the expected ones exist
 
 
+import glob
+import os
+
+def normalize_path(path):
+    # Normalize paths by removing trailing slashes and converting to lower case
+    return os.path.normpath(path).lower()
+
+for i, m, a, s in zip(ID, marker, age, sex):
+    file_base_path = rf"Y:/2021_Bjerke_DevMouse_projects/01_DATA/P{a}/{m.capitalize()}/Mouse{i}/"
+    CZI_path = rf"{file_base_path}1_CZI/"
+    TIF_path = rf"{file_base_path}2_TIF/"
+    thumbs_path = rf"{file_base_path}thumbnails/"
+    anchoring_path = rf"{file_base_path}thumbnails_for_anchoring/"
+
+    expected_content_parent = {
+        normalize_path(CZI_path), 
+        normalize_path(TIF_path), 
+        normalize_path(thumbs_path), 
+        normalize_path(anchoring_path)
+    }
+    
+    actual_content_parent = set(normalize_path(path) for path in glob.glob(f"{file_base_path}*"))
+
+    print(f"\nChecking Mouse{i} P{a} {m}")
+    print(f"Expected content: {expected_content_parent}")
+    print(f"Actual content: {actual_content_parent}")
+
+    unexpected_files = actual_content_parent - expected_content_parent
+    if unexpected_files:
+        for content in unexpected_files:
+            print(f"NB! Unexpected file {content} found. Please check.")
+    else:
+        print("Directory is well organized.")
+
+    break
+
+
 # Check that the same files exist in tif and thumbnail paths
 ## Check this again after all series are done.
 
