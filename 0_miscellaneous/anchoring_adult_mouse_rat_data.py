@@ -18,7 +18,7 @@ species_target = {"Mouse": "ABA_Mouse_CCFv3_2017_25um.cutlas", "Rat": "WHS_Rat_v
 species_resolution = {"Mouse": [428,524,320], "Rat": [512.0, 1024.0, 512.0]}
 species_suffix = {"Mouse": "nonlin", "Rat": "WHSv4_nonlinear"}
 markers = ["parvalbumin"]
-ids = [25203, 25204, 25205, 81264, 81265, 81266, 81267]
+ids = [25203, 25204, 25205, 25206, 81264, 81265, 81266, 81267]
 
 check_only = True
 
