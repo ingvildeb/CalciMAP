@@ -61,14 +61,35 @@ for i,m,a,s in zip(ID,marker,age,sex):
 
 
 # Check that no excess files beyond the expected ones exist
-
-
-import glob
-import os
-
 def normalize_path(path):
     # Normalize paths by removing trailing slashes and converting to lower case
     return os.path.normpath(path).lower()
+
+def check_folder_contents(folder_path, expected_extension, allow_one_json=False):
+    # List all files in the folder
+    files = glob.glob(f"{folder_path}*")
+    unexpected_files = []
+    json_files_count = 0
+
+    for file in files:
+        # Normalize path and get file extension
+        normalized_path = normalize_path(file)
+        file_extension = os.path.splitext(normalized_path)[1].lower()
+        
+        # Check for JSON files if allowed
+        if allow_one_json and file_extension == ".json":
+            json_files_count += 1
+            continue
+        
+        # Check if the file has the expected extension
+        if file_extension != expected_extension:
+            unexpected_files.append(os.path.basename(file))
+
+    # Check if there's exactly one JSON file if required
+    if allow_one_json and json_files_count != 1:
+        unexpected_files.append(f"Expected exactly one json file, found {json_files_count}.")
+
+    return unexpected_files
 
 for i, m, a, s in zip(ID, marker, age, sex):
     file_base_path = rf"Y:/2021_Bjerke_DevMouse_projects/01_DATA/P{a}/{m.capitalize()}/Mouse{i}/"
@@ -87,17 +108,33 @@ for i, m, a, s in zip(ID, marker, age, sex):
     actual_content_parent = set(normalize_path(path) for path in glob.glob(f"{file_base_path}*"))
 
     print(f"\nChecking Mouse{i} P{a} {m}")
-    print(f"Expected content: {expected_content_parent}")
-    print(f"Actual content: {actual_content_parent}")
 
     unexpected_files = actual_content_parent - expected_content_parent
     if unexpected_files:
         for content in unexpected_files:
-            print(f"NB! Unexpected file {content} found. Please check.")
+            print(f"NB! Unexpected file {os.path.basename(content)} found. Please check.")
     else:
         print("Directory is well organized.")
 
-    break
+    # Check contents of each folder
+    folder_checks = [
+        (CZI_path, ".czi", False),
+        (TIF_path, ".tif", False),
+        (thumbs_path, ".png", False),
+        (anchoring_path, ".png", True)
+    ]
+
+    for folder_path, extension, allow_one_json in folder_checks:
+        normalized_folder_path = normalize_path(folder_path)
+        if normalized_folder_path in actual_content_parent:
+            unexpected_files = check_folder_contents(folder_path, extension, allow_one_json)
+            if unexpected_files:
+                for file in unexpected_files:
+                    print(f"NB! Unexpected file {file} in {folder_path}. Please check.")
+        else:
+            print(f"NB! Expected folder {folder_path} is missing. Please check.")
+
+
 
 
 # Check that the same files exist in tif and thumbnail paths
