@@ -15,13 +15,15 @@ import nutil_checker_functions as ncf
 ### Example usage
 # Provide a directory that contains all the nut files to be checked
     
-nut_file_directory = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\tranform_IEB//"
+nut_file_directory = r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB//"
 
 # Check transform files (thumbnails only or not)
 
 files = glob.glob(rf"{nut_file_directory}/*.nut")
 done_path = f"{nut_file_directory}done//"
 
+# Set to "True" when you only want to check the status on the nut file, not rewrite them. This is useful when the job is still running.
+# Set to "False" after the job is complete and you want to write new nut files for any missing files. 
 check_only = False
 
 for file in files:    
