@@ -14,10 +14,10 @@ import file_naming_functions as fnf
 ids_species = {81264:"Mouse",81265:"Mouse",81266:"Mouse",81267:"Mouse",25205:"Rat",25206:"Rat",25203:"Rat",25204:"Rat"}
 markers_startnr = {"parvalbumin":3, "nissl":1}
 
-markers = ["parvalbumin"]
-ids = [25206]
+markers = ["nissl"]
+ids = [81267]
 
-check_only = True
+check_only = False
 
 for m in markers:
     for i in ids:
@@ -28,22 +28,22 @@ for m in markers:
         tiff_dir = rf"{file_base_path}2_TIF\\"
         thumbs_dir = rf"{file_base_path}thumbnails\\"
         anchoring_dir = rf"{file_base_path}thumbnails_for_anchoring\\"
-        anchoring_working_dir = rf"Y:\NESYS_Active_projects\2019_Laja_Brainwide_Parvalbumin\{species}\Anchoring_workspace\{species}{i}\\"
+        #anchoring_working_dir = rf"Y:\NESYS_Active_projects\2019_Laja_Brainwide_Parvalbumin\{species}\Anchoring_workspace\{species}{i}\\"
         
-        dirs = [tiff_dir, thumbs_dir, anchoring_dir, anchoring_working_dir]
+        dirs = [tiff_dir, thumbs_dir, anchoring_dir]
         dirs_extension = {tiff_dir: ".tif", thumbs_dir: "_thumbnail.png", 
-                          anchoring_dir: "_thumbnail.png", anchoring_working_dir: "_thumbnail.png"}
-        dirs_json = {tiff_dir: None, thumbs_dir: None, 
-                          anchoring_dir: None, 
-                          anchoring_working_dir: rf"Y:\NESYS_Active_projects\2019_Laja_Brainwide_Parvalbumin\{species}\Anchoring_workspace\{species}{i}\{species}{i}_{m}_Anchoring.json"}
+                          anchoring_dir: "_thumbnail.png"}
+        #dirs_json = {tiff_dir: None, thumbs_dir: None, 
+        #                  anchoring_dir: None, 
+        #                  anchoring_working_dir: rf"Y:\NESYS_Active_projects\2019_Laja_Brainwide_Parvalbumin\{species}\Anchoring_workspace\{species}{i}\{species}{i}_{m}_Anchoring.json"}
 
         for dir in dirs:
             extension = dirs_extension.get(dir)
             print(f"{dir}") 
             print(len(glob.glob(f"{dir}*{extension}")))
             renumber_dict = fnf.sequential_to_real_sections(dir,startnr,3,extension)
-            json_file = dirs_json.get(dir)
-        
+            #json_file = dirs_json.get(dir)
+            json_file = None
             if check_only == True:
                 print(renumber_dict)
                 if json_file:
