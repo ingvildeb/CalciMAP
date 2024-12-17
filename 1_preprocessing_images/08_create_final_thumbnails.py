@@ -10,8 +10,8 @@ sys.path.insert(0, brain_section_scripts_path)
 import create_nut_file_functions as nff
 
 # List the IDs and markers with files to be renamed
-ids = [276]
-markers = ["cresyl_violet"]
+ids = [817]
+markers = ["calbindin", "parvalbumin", "cresyl_violet"]
 
 # Path to Excel sheet listing all animal IDs with metadata
 metadata = r"Y:\2021_Bjerke_DevMouse_projects\03_METADATA//animals_and_stains.xlsx"
@@ -38,7 +38,7 @@ for i, m, a, s in zip(ID, marker, age, sex):
 
   
     nff.write_nut_transform_file(f"Mouse{i}_P{a}_{m.capitalize()}_finalThumbs", 
-                                 r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB\wait//", 
+                                 r"Y:\2021_Bjerke_DevMouse_projects\01_DATA\transform_IEB//", 
                                  transform_input_dir = transform_input_dir, 
                                  transform_output_dir = file_base_path, 
                                  transform_files = nut_file_string, 
